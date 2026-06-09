@@ -216,3 +216,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Raw data samples — store in ADLS, not Git
+data_ingestion/raw_samples/
