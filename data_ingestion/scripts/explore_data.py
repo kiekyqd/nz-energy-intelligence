@@ -66,3 +66,28 @@ print(f"Best performer:           {summary.iloc[-1]['edb']} (SAIDI: {summary.ilo
 print(f"Worst performer:          {summary.iloc[0]['edb']} (SAIDI: {summary.iloc[0]['total_saidi_2025']:.2f})")
 print(f"Above industry avg:       {(summary['total_saidi_2025'] > industry_avg).sum()} companies")
 print(f"Below industry avg:       {(summary['total_saidi_2025'] <= industry_avg).sum()} companies")
+
+
+# ── Pre-transformation exploration ────────────────────────────────────────────
+print("\n=== Pre-Silver Exploration ===")
+
+# 1. Check datetime columns — are they strings or datetime?
+print("start_datetime dtype:", df_int['start_datetime'].dtype)
+print("end_datetime dtype:  ", df_int['end_datetime'].dtype)
+print("Sample values:")
+print(df_int[['start_datetime', 'end_datetime']].head(3))
+
+# 2. Check for missing values
+print("\nMissing values:")
+print(df_int.isnull().sum()[df_int.isnull().sum() > 0])
+
+# 3. Check cause inconsistencies
+print("\nAll unique causes:")
+print(sorted(df_int['cause'].dropna().unique().tolist()))
+
+# 4. Check planned_or_unplanned unique values
+print("\nplanned_or_unplanned unique values:")
+print(df_int['planned_or_unplanned'].unique().tolist())
+
+# 5. Check for duplicate rows
+print(f"\nDuplicate rows: {df_int.duplicated().sum()}")
